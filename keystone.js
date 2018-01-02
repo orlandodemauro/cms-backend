@@ -12,6 +12,7 @@ var keystone = require('keystone');
 keystone.init({
 	'name': 'cmsApi',
 	'brand': 'cmsApi',
+	'emails': 'templates/emails',
 	'auto update': false,
 	'session': true,
     'auth': true,

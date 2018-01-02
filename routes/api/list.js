@@ -14,7 +14,12 @@ var getAllBlogs = function(req, res) {
 		// Load the counts for each category
 		async.eachSeries(items, function (category, next) {
 
-			keystone.list('Post').model.count().where('categories').in([category.id]).exec(function (err, count) {
+      keystone.list('Post').model
+      .count()
+      .where('categories')
+      .in([category.id])
+      .where('state', req.query.state || 'published')
+      .exec(function (err, count) {
         result.push(Object.assign({ "postCount": count }, JSON.parse(JSON.stringify(category))));
 				next(err);
 			});
